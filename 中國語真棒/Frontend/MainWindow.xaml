@@ -1,0 +1,139 @@
+﻿<Window 
+        x:Class="中國語真棒.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:中國語真棒"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="526" WindowStyle="None" MinWidth="526" MinHeight="450" MouseLeftButtonDown="Window_MouseLeftButtonDown" MouseDoubleClick="Window_MouseDoubleClick" AllowsTransparency="True" Loaded="Window_Loaded" Background="#CCFFFFFF">
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/MainStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Storyboard x:Key="MenuOn">
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MenuWindow">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="-300,0,0,0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseInOut"/>
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.25" Value="0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseInOut"/>
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="MenuOff">
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MenuWindow">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseInOut"/>
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.25" Value="-300,0,0,0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseInOut"/>
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="0" ResizeBorderThickness="5" NonClientFrameEdges="None" GlassFrameThickness="10" UseAeroCaptionButtons="False" />
+    </WindowChrome.WindowChrome>
+    <Grid>
+
+
+        <Grid Height="50" x:Name="Title" VerticalAlignment="Top">
+            <Rectangle Height="50" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="中國語真棒" VerticalAlignment="Center" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+
+            <Button x:Name="CloseButton" Style="{StaticResource ButtonStyle}" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" Background="#00252529">
+                <Grid Width="16" Height="16" x:Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
+                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FF3F3F3F" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FF3F3F3F" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="135"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                </Grid>
+            </Button>
+
+
+
+        </Grid>
+
+        <Grid Margin="0,50,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.45*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <ComboBox HorizontalAlignment="Left" Height="24" Margin="15,60,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold">
+                    <ComboBoxItem Content="1班"/>
+                    <ComboBoxItem Content="2班"/>
+                    <ComboBoxItem Content="3班"/>
+                    <ComboBoxItem Content="4班"/>
+                    <ComboBoxItem Content="5班"/>
+                    <ComboBoxItem Content="6班"/>
+                    <ComboBoxItem Content="制..."/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="28" RenderTransformOrigin="0.33,0.381" Width="130"/>
+                <Button x:Name="ResetButton" Style="{StaticResource ButtonStyle}" Width="50" Height="35" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#00252529" Content="初始化" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Medium" Margin="0,89,0,0">
+                   
+                </Button>
+                <Ellipse HorizontalAlignment="Left" Height="58" Margin="374,31,0,0" VerticalAlignment="Top" Width="58" Fill="Red" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Tag="2"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True"/>
+                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Column="1"/>
+                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Column="2"/>
+                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Row="1"/>
+                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Row="1" Grid.Column="1"/>
+                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Row="1" Grid.Column="2"/>
+
+
+            </Grid>
+
+        </Grid>
+        <Grid Background="#7F000000">
+            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+            <TextBox HorizontalAlignment="Center" Height="36" Margin="0,0,0,150" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="100" Foreground="White" Background="{x:Null}" BorderBrush="#FFFF1605" BorderThickness="0,0,0,2" FontSize="24" FontFamily="Noto Sans CJK KR Bold"/>
+
+
+        </Grid>
+    </Grid>
+</Window>

@@ -98,8 +98,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Frontend\Res\" />
     <Folder Include="Frontend\UserControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\disstar.png" />
+    <Resource Include="Frontend\Res\star.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

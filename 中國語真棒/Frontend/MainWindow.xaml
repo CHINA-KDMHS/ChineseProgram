@@ -6,42 +6,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:中國語真棒"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="526" WindowStyle="None" MinWidth="526" MinHeight="450" MouseLeftButtonDown="Window_MouseLeftButtonDown" MouseDoubleClick="Window_MouseDoubleClick" AllowsTransparency="True" Loaded="Window_Loaded" Background="#CCFFFFFF">
+        Title="MainWindow" Height="450" Width="526" WindowStyle="None" MinWidth="526" MinHeight="450" MouseLeftButtonDown="Window_MouseLeftButtonDown"  MouseDoubleClick="Window_MouseDoubleClick" AllowsTransparency="True" Loaded="Window_Loaded" Background="#CCFFFFFF">
     <Window.Resources>
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/MainStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="OpenDisplay">
+                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
+                    <EasingColorKeyFrame KeyTime="0" Value="#00000000">
+                        <EasingColorKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingColorKeyFrame.EasingFunction>
+                    </EasingColorKeyFrame>
+                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#BF000000">
+                        <EasingColorKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingColorKeyFrame.EasingFunction>
+                    </EasingColorKeyFrame>
+                </ColorAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="CloseDisplay">
+                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
+                    <EasingColorKeyFrame KeyTime="0" Value="#BF000000">
+                        <EasingColorKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingColorKeyFrame.EasingFunction>
+                    </EasingColorKeyFrame>
+                    <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#00000000">
+                        <EasingColorKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingColorKeyFrame.EasingFunction>
+                    </EasingColorKeyFrame>
+                </ColorAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseInOut"/>
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
 
-            <Storyboard x:Key="MenuOn">
-                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MenuWindow">
-                    <EasingThicknessKeyFrame KeyTime="0" Value="-300,0,0,0">
-                        <EasingThicknessKeyFrame.EasingFunction>
-                            <CubicEase EasingMode="EaseInOut"/>
-                        </EasingThicknessKeyFrame.EasingFunction>
-                    </EasingThicknessKeyFrame>
-                    <EasingThicknessKeyFrame KeyTime="0:0:0.25" Value="0">
-                        <EasingThicknessKeyFrame.EasingFunction>
-                            <CubicEase EasingMode="EaseInOut"/>
-                        </EasingThicknessKeyFrame.EasingFunction>
-                    </EasingThicknessKeyFrame>
-                </ThicknessAnimationUsingKeyFrames>
-            </Storyboard>
-            <Storyboard x:Key="MenuOff">
-                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MenuWindow">
-                    <EasingThicknessKeyFrame KeyTime="0" Value="0">
-                        <EasingThicknessKeyFrame.EasingFunction>
-                            <CubicEase EasingMode="EaseInOut"/>
-                        </EasingThicknessKeyFrame.EasingFunction>
-                    </EasingThicknessKeyFrame>
-                    <EasingThicknessKeyFrame KeyTime="0:0:0.25" Value="-300,0,0,0">
-                        <EasingThicknessKeyFrame.EasingFunction>
-                            <CubicEase EasingMode="EaseInOut"/>
-                        </EasingThicknessKeyFrame.EasingFunction>
-                    </EasingThicknessKeyFrame>
-                </ThicknessAnimationUsingKeyFrames>
-            </Storyboard>
+
         </ResourceDictionary>
     </Window.Resources>
 
@@ -92,7 +117,7 @@
             </Grid.RowDefinitions>
 
             <Grid>
-                <ComboBox HorizontalAlignment="Left" Height="24" Margin="15,60,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold">
+                <ComboBox Style="{StaticResource ComboboxStyle}"  HorizontalAlignment="Left" Height="40" Margin="15,60,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold">
                     <ComboBoxItem Content="1班"/>
                     <ComboBoxItem Content="2班"/>
                     <ComboBoxItem Content="3班"/>
@@ -102,13 +127,21 @@
                     <ComboBoxItem Content="制..."/>
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="28" RenderTransformOrigin="0.33,0.381" Width="130"/>
-                <Button x:Name="ResetButton" Style="{StaticResource ButtonStyle}" Width="50" Height="35" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#00252529" Content="初始化" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Medium" Margin="0,89,0,0">
-                   
-                </Button>
-                <Ellipse HorizontalAlignment="Left" Height="58" Margin="374,31,0,0" VerticalAlignment="Top" Width="58" Fill="Red" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Tag="2"/>
+
+                <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,105,0" HorizontalAlignment="Right" VerticalAlignment="Center"></Image>
+                <Image Source="Res/disstar.png" Width="50" Height="50" Margin="0,0,35,0" HorizontalAlignment="Right" VerticalAlignment="Center"></Image>
+                <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,105,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseLeftButtonDown="Image_MouseLeftButtonDown" ></Image>
+                <Image Source="Res/disstar.png" Width="50" Height="50" Margin="0,0,35,0" HorizontalAlignment="Right" VerticalAlignment="Center"></Image>
             </Grid>
 
             <Grid Grid.Row="1">
+                <Grid.LayoutTransform>
+                    <ScaleTransform x:Name="ApplicationScaleTransform"
+                        CenterX="0"
+                        CenterY="0"
+                        ScaleX="{Binding ElementName=grid, Path=ScaleValue}"
+                        ScaleY="{Binding ElementName=MainWindow, Path=ScaleValue}" />
+                </Grid.LayoutTransform>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -118,22 +151,55 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True"/>
-                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Column="1"/>
-                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Column="2"/>
-                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Row="1"/>
-                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Row="1" Grid.Column="1"/>
-                <Frame Content="Frame" Height="138" Margin="0" AllowDrop="True" Grid.Row="1" Grid.Column="2"/>
 
-
+                <Grid AllowDrop="True">
+                    <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="一 球队" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+                    <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,50,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="X 18" VerticalAlignment="Center" Foreground="#FFFF8000" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" TextAlignment="Center" Margin="50,0,0,0"/>
+                </Grid>
+                <Grid AllowDrop="True" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="二 球队" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+                    <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,50,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="X 18" VerticalAlignment="Center" Foreground="#FFFF8000" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" TextAlignment="Center" Margin="50,0,0,0"/>
+                </Grid>
+                <Grid AllowDrop="True" Grid.Column="2">
+                    <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="三 球队" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+                    <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,50,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="X 18" VerticalAlignment="Center" Foreground="#FFFF8000" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" TextAlignment="Center" Margin="50,0,0,0"/>
+                </Grid>
+                <Grid AllowDrop="True" Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="四 球队" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+                    <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,50,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="X 18" VerticalAlignment="Center" Foreground="#FFFF8000" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" TextAlignment="Center" Margin="50,0,0,0"/>
+                </Grid>
+                <Grid AllowDrop="True" Grid.Row="1" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="五 球队" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+                    <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,50,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="X 18" VerticalAlignment="Center" Foreground="#FFFF8000" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" TextAlignment="Center" Margin="50,0,0,0"/>
+                </Grid>
+                <Grid AllowDrop="True" Grid.Row="1" Grid.Column="2">
+                    <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="六 球队" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
+                    <Image Source="Res/star.png" Width="50" Height="50" Margin="0,0,50,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="X 18" VerticalAlignment="Center" Foreground="#FFFF8000" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" TextAlignment="Center" Margin="50,0,0,0"/>
+                </Grid>
+                
             </Grid>
 
         </Grid>
-        <Grid Background="#7F000000">
-            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
-            <TextBox HorizontalAlignment="Center" Height="36" Margin="0,0,0,150" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="100" Foreground="White" Background="{x:Null}" BorderBrush="#FFFF1605" BorderThickness="0,0,0,2" FontSize="24" FontFamily="Noto Sans CJK KR Bold"/>
+        <Grid x:Name="grid" Opacity="0" Background="#FF000000">
+            <Grid Width="100" Height="250">
+                <TextBlock HorizontalAlignment="Center" Margin="0,0,0,200" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+                <TextBox HorizontalAlignment="Center" Height="36" Margin="0,0,0,100" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" Foreground="White" Background="{x:Null}" BorderBrush="#FFFFC105" BorderThickness="0,0,0,2" FontSize="24" FontFamily="Noto Sans CJK KR Bold" TextAlignment="Center"/>
 
-
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Margin="0,50,0,0">
+                    <Ellipse  Stroke="#FFFFC105" />
+                    <TextBlock Text="是" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFFFC105" FontFamily="Noto Sans CJK KR Medium" FontSize="18"></TextBlock>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Margin="0,200,0,0">
+                    <Ellipse  Stroke="#FFFF1605" />
+                    <TextBlock Text="取消" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFFF1605" FontFamily="Noto Sans CJK KR Medium" FontSize="18"></TextBlock>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

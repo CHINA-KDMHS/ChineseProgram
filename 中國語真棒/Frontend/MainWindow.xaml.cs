@@ -121,5 +121,10 @@ namespace 中國語真棒
 
             
         }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("test");
+        }
     }
 }

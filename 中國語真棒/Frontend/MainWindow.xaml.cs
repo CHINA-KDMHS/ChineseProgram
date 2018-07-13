@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -55,9 +56,18 @@ namespace 中國語真棒
     }
     public partial class MainWindow : Window
     {
+
+        Storyboard MenuOn;
+        Storyboard MenuOff;
+
+
+        private bool Dragging;
+
         public MainWindow()
         {
             InitializeComponent();
+            MenuOn = (Storyboard)FindResource("OpenDisplay");
+            MenuOff = (Storyboard)FindResource("CloseDisplay");
         }
 
         [DllImport("user32.dll")]
@@ -88,7 +98,20 @@ namespace 中國語真棒
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             EnableBlur();
+
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+
+        private void Image_DragEnter(object sender, DragEventArgs e)
+        {
+            Console.WriteLine("Drag Enter");
+        }
+
 
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -102,29 +125,79 @@ namespace 中國語真棒
             }
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            CaptureMouse();
+            Dragging = true;
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseMove(object sender, MouseEventArgs e)
         {
-            Environment.Exit(0);
+            if (Dragging)
+            {
+                Point canvPosToWindow = ((Image)sender).TransformToAncestor(this).Transform(new Point(0, 0));
+
+                Image r = sender as Image;
+                var upperlimit = canvPosToWindow.Y + (r.Height / 2);
+                var lowerlimit = canvPosToWindow.Y + ((Image)sender).ActualHeight - (r.Height / 2);
+
+                var leftlimit = canvPosToWindow.X + (r.Width / 2);
+                var rightlimit = canvPosToWindow.X + ((Image)sender).ActualWidth - (r.Width / 2);
+
+
+                var absmouseXpos = e.GetPosition(this).X;
+                var absmouseYpos = e.GetPosition(this).Y;
+
+                Console.WriteLine(absmouseXpos + " " + absmouseYpos);
+                if ((absmouseXpos > leftlimit && absmouseXpos < rightlimit)
+                    && (absmouseYpos > upperlimit && absmouseYpos < lowerlimit))
+                {
+                    r.SetValue(Canvas.LeftProperty, e.GetPosition(((Image)sender)).X - (r.Width / 2));
+                    r.SetValue(Canvas.TopProperty, e.GetPosition(((Image)sender)).Y - (r.Height / 2));
+                }
+            }
         }
 
-        private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Ellipse ellipse = (Ellipse)sender;
-            DataObject dataObject = new DataObject(ellipse.Tag);
-            DragDrop.DoDragDrop(ellipse, dataObject, DragDropEffects.Copy);
-            this.DragMove();
+            ReleaseMouseCapture();
+            Dragging = false;
+        }
 
-            
+        private void Title_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("test");
+            display.IsHitTestVisible = true;
+            MenuOn.Begin();
+            MenuOff.Stop();
+        }
+
+        private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            display.IsHitTestVisible = true;
+            MenuOn.Begin();
+            MenuOff.Stop();
+        }
+
+        private void display_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            display.IsHitTestVisible = false;
+            MenuOff.Begin();
+            MenuOn.Stop();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            switch(((ComboBoxItem)selectteam.SelectedItem).Tag)
+            {
+
+
+
+            }
         }
     }
 }

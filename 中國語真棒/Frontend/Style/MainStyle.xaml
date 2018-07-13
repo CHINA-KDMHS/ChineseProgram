@@ -98,7 +98,7 @@
                 <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
                 <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
                 <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}"/>
-                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+                <Setter Property="TextElement.Foreground" Value="#ff0000"/>
                 <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
             </Trigger>
         </ControlTemplate.Triggers>
@@ -128,7 +128,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
-        <Setter Property="TextElement.Foreground" Value="Black"/>
+        <Setter Property="TextElement.Foreground" Value="Red"/>
         <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="ItemContainerStyle">

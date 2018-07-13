@@ -62,6 +62,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Backend\InputOut.cs" />
     <Compile Include="Frontend\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,6 +104,12 @@
   <ItemGroup>
     <Resource Include="Frontend\Res\disstar.png" />
     <Resource Include="Frontend\Res\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\dragon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

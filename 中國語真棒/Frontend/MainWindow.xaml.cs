@@ -171,6 +171,7 @@ namespace 中國語真棒
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Count.Tag = "down";
             display.IsHitTestVisible = true;
             MenuOn.Begin();
             MenuOff.Stop();
@@ -178,6 +179,7 @@ namespace 中國語真棒
 
         private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
+            Count.Tag = "up";
             display.IsHitTestVisible = true;
             MenuOn.Begin();
             MenuOff.Stop();
@@ -192,12 +194,43 @@ namespace 中國語真棒
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            switch(((ComboBoxItem)selectteam.SelectedItem).Tag)
+            String counttype = Count.Tag.ToString();
+            TextBlock SelectTeam = null;
+
+            switch(((ComboBoxItem)selectteam.SelectedItem).Tag.ToString())
             {
 
-
-
+                case "one":
+                    SelectTeam = oneteam;
+                    break;
+                case "two":
+                    SelectTeam = twoteam;
+                    break;
+                case "three":
+                    SelectTeam = threeteam;
+                    break;
+                case "four":
+                    SelectTeam = fourteam;
+                    break;
+                case "five":
+                    SelectTeam = fiveteam;
+                    break;
+                case "six":
+                    SelectTeam = sixteam;
+                    break;
+                default:
+                    break;
             }
+
+            if(counttype == "up")
+            {
+                SelectTeam.Text = "X" + (Int32.Parse(SelectTeam.Text.Replace("X", "")) + Int32.Parse(givecount.Text)).ToString();
+            } else if (counttype == "down") {
+                SelectTeam.Text = "X" + (Int32.Parse(SelectTeam.Text.Replace("X", "")) - Int32.Parse(givecount.Text)).ToString();
+            }
+            display.IsHitTestVisible = false;
+            MenuOff.Begin();
+            MenuOn.Stop();
         }
     }
 }

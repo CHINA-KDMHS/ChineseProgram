@@ -102,15 +102,14 @@
                 <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Grid>
                         <ComboBox Style="{StaticResource ComboboxStyle}"  HorizontalAlignment="Left" Height="40" Margin="15,60,15,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold">
-                            <ComboBoxItem Content="1班"/>
-                            <ComboBoxItem Content="2班"/>
-                            <ComboBoxItem Content="3班"/>
-                            <ComboBoxItem Content="4班"/>
-                            <ComboBoxItem Content="5班"/>
-                            <ComboBoxItem Content="6班"/>
-                            <ComboBoxItem Content="制..."/>
+                            <ComboBoxItem Content="1bān"/>
+                            <ComboBoxItem Content="2bān"/>
+                            <ComboBoxItem Content="3bān"/>
+                            <ComboBoxItem Content="4bān"/>
+                            <ComboBoxItem Content="5bān"/>
+                            <ComboBoxItem Content="6bān"/>
                         </ComboBox>
-                        <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="28" RenderTransformOrigin="0.33,0.381" Width="130"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="qǐngxuǎnzé bān!" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" RenderTransformOrigin="0.33,0.381" Width="205" FontSize="24"/>
                     </Grid>
                 </Viewbox>
 
@@ -143,7 +142,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="一 球队" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -153,7 +152,7 @@
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
                             <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
-                            <TextBlock Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
+                            <TextBlock x:Name="oneteam"  Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
                     </Viewbox>
@@ -170,7 +169,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="二 球队" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -180,7 +179,7 @@
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
                             <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
-                            <TextBlock Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
+                            <TextBlock x:Name="twoteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
                     </Viewbox>
@@ -197,7 +196,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="三 球队" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -207,7 +206,7 @@
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
                             <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
-                            <TextBlock Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
+                            <TextBlock x:Name="threeteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
                     </Viewbox>
@@ -224,7 +223,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="四 球队" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -234,7 +233,7 @@
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
                             <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
-                            <TextBlock Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
+                            <TextBlock x:Name="fourteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
                     </Viewbox>
@@ -251,7 +250,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="五 球队" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -261,7 +260,7 @@
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
                             <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
-                            <TextBlock Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
+                            <TextBlock x:Name="fiveteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
                     </Viewbox>
@@ -278,7 +277,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="六 球队" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -288,7 +287,7 @@
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
                             <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
-                            <TextBlock Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
+                            <TextBlock x:Name="sixteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
                     </Viewbox>
@@ -301,21 +300,21 @@
 
         </Grid>
         <Grid x:Name="display" Opacity="0" Background="#B2000000" MouseLeftButtonDown="display_MouseLeftButtonDown" IsHitTestVisible="False">
-            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="请选择班!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="qǐngxuǎnzé bān" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
             <ComboBox  x:Name="selectteam" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Center" Height="40" Margin="0,0,0,150" VerticalAlignment="Center" Width="200" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" Foreground="White">
-                <ComboBoxItem Tag="one" x:Name="selectone" Content="一 球队"/>
-                <ComboBoxItem Tag="two" x:Name="selecttwo" Content="二 球队"/>
-                <ComboBoxItem Tag="three" x:Name="selectthree" Content="三 球队"/>
-                <ComboBoxItem Tag="four" x:Name="selectfour" Content="四 球队"/>
-                <ComboBoxItem Tag="five"  x:Name="selectfive" Content="五 球队"/>
-                <ComboBoxItem Tag="six" x:Name="selectsix" Content="六 球队"/>
+                <ComboBoxItem Tag="one" x:Name="selectone" Content="조이름"/>
+                <ComboBoxItem Tag="two" x:Name="selecttwo" Content="조이름"/>
+                <ComboBoxItem Tag="three" x:Name="selectthree" Content="조이름"/>
+                <ComboBoxItem Tag="four" x:Name="selectfour" Content="조이름"/>
+                <ComboBoxItem Tag="five"  x:Name="selectfive" Content="조이름"/>
+                <ComboBoxItem Tag="six" x:Name="selectsix" Content="조이름"/>
             </ComboBox>
 
-            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="选择数量!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="xuǎnzé shùliàng!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
             
             <TextBox x:Name="givecount" HorizontalAlignment="Center" Height="36" Margin="0,100,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Foreground="White" Background="{x:Null}" BorderBrush="#FFFFC105" BorderThickness="0,0,0,2" FontSize="24" FontFamily="Noto Sans CJK KR Bold" TextAlignment="Center"/>
 
-            <Button Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,248,0,0" BorderBrush="{x:Null}" Foreground="Black" Background="#7FFFFFFF" FontFamily="Noto Sans CJK KR Black" FontSize="22" Padding="0" Click="Button_Click">给龙</Button>
+            <Button x:Name="Count" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,248,0,0" BorderBrush="{x:Null}" Foreground="Black" Background="#7FFFFFFF" FontFamily="Noto Sans CJK KR Black" FontSize="22" Padding="0" Click="Button_Click">shì</Button>
         </Grid>
     </Grid>
 </Window>

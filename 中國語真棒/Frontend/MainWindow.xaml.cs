@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,6 +17,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace 中國語真棒
 {
@@ -54,20 +58,51 @@ namespace 中國語真棒
         WCA_ACCENT_POLICY = 19
         // ...
     }
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
 
         Storyboard MenuOn;
         Storyboard MenuOff;
 
+        String toyear;
 
         private bool Dragging;
+
+        Microsoft.Office.Interop.Excel._Application application;
 
         public MainWindow()
         {
             InitializeComponent();
             MenuOn = (Storyboard)FindResource("OpenDisplay");
             MenuOff = (Storyboard)FindResource("CloseDisplay");
+
+            application =  new Microsoft.Office.Interop.Excel.Application();
+
+            toyear = DateTime.Now.ToString("yyyy");
+
+            if (Directory.Exists("database"))
+            {
+
+            } else {
+                Directory.CreateDirectory("database");
+                Directory.CreateDirectory("database\\" + toyear);
+                Directory.CreateDirectory("database\\" + toyear + "\\1");
+                Directory.CreateDirectory("database\\" + toyear + "\\2");
+                Directory.CreateDirectory("database\\" + toyear + "\\3");
+                Directory.CreateDirectory("database\\" + toyear + "\\4");
+                Directory.CreateDirectory("database\\" + toyear + "\\5");
+                Directory.CreateDirectory("database\\" + toyear + "\\6");
+                Workbook baseworkbook = application.Workbooks.Add();
+                Worksheet worksheet = baseworkbook.Worksheets.Add(Count: 6);
+                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\1\\1반.xlsx");
+                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\2\\2반.xlsx");
+                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\3\\3반.xlsx");
+                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\4\\4반.xlsx");
+                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\5\\5반.xlsx");
+                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\6\\6반.xlsx");
+
+            }
+
         }
 
         [DllImport("user32.dll")]
@@ -135,7 +170,7 @@ namespace 中國語真棒
         {
             if (Dragging)
             {
-                Point canvPosToWindow = ((Image)sender).TransformToAncestor(this).Transform(new Point(0, 0));
+                System.Windows.Point canvPosToWindow = ((Image)sender).TransformToAncestor(this).Transform(new System.Windows.Point(0, 0));
 
                 Image r = sender as Image;
                 var upperlimit = canvPosToWindow.Y + (r.Height / 2);

@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,8 +16,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-using Excel = Microsoft.Office.Interop.Excel;
+using NPOI.XSSF.UserModel;
 
 namespace 中國語真棒
 {
@@ -68,7 +66,8 @@ namespace 中國語真棒
 
         private bool Dragging;
 
-        Microsoft.Office.Interop.Excel._Application application;
+        XSSFWorkbook wb;
+        XSSFSheet sh;
 
         public MainWindow()
         {
@@ -76,13 +75,12 @@ namespace 中國語真棒
             MenuOn = (Storyboard)FindResource("OpenDisplay");
             MenuOff = (Storyboard)FindResource("CloseDisplay");
 
-            application =  new Microsoft.Office.Interop.Excel.Application();
 
             toyear = DateTime.Now.ToString("yyyy");
 
             if (Directory.Exists("database"))
             {
-
+                selectban.SelectedIndex = 0;
             } else {
                 Directory.CreateDirectory("database");
                 Directory.CreateDirectory("database\\" + toyear);
@@ -92,15 +90,51 @@ namespace 中國語真棒
                 Directory.CreateDirectory("database\\" + toyear + "\\4");
                 Directory.CreateDirectory("database\\" + toyear + "\\5");
                 Directory.CreateDirectory("database\\" + toyear + "\\6");
-                Workbook baseworkbook = application.Workbooks.Add();
-                Worksheet worksheet = baseworkbook.Worksheets.Add(Count: 6);
-                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\1\\1반.xlsx");
-                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\2\\2반.xlsx");
-                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\3\\3반.xlsx");
-                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\4\\4반.xlsx");
-                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\5\\5반.xlsx");
-                baseworkbook.SaveAs(Filename: "database\\" + toyear + "\\6\\6반.xlsx");
 
+                wb = new XSSFWorkbook();
+
+                // create sheet
+
+                for (int sheet = 1; sheet <= 6; sheet++)
+                {
+
+
+                sh = (XSSFSheet)wb.CreateSheet(sheet+"조");
+
+                for (int i = 0; i < 15; i++)
+                {
+                    var r = sh.CreateRow(i);
+                    for (int j = 0; j < 15; j++)
+                    {
+                        r.CreateCell(j);
+                    }
+                }
+                    sh.GetRow(1).GetCell(1).SetCellValue("조이름");
+                    sh.GetRow(1).GetCell(2).SetCellValue("여기에 조이름을 적어주세요");
+                    sh.GetRow(2).GetCell(1).SetCellValue("조원들 (1번은 조장입니다.)");
+                    sh.GetRow(2).GetCell(2).SetCellValue("징징이");
+                    sh.GetRow(2).GetCell(3).SetCellValue("징징이");
+                    sh.GetRow(2).GetCell(4).SetCellValue("징징이");
+                    sh.GetRow(2).GetCell(5).SetCellValue("징징이");
+                    sh.GetRow(2).GetCell(6).SetCellValue("징징이");
+                    sh.GetRow(2).GetCell(7).SetCellValue("징징이");
+                    sh.GetRow(2).GetCell(8).SetCellValue("징징이(없을 시 공백)");
+                    sh.GetRow(3).GetCell(1).SetCellValue("포인트");
+                    sh.GetRow(3).GetCell(2).SetCellValue("0");
+                }
+
+                for (int i = 1; i <= 6; i++)
+                {
+                    using (var fs = new FileStream("database\\" + toyear + "\\"+i+"\\"+i+"반.xlsx", FileMode.Create, FileAccess.Write))
+                    {
+                        wb.Write(fs);
+                    }
+
+                }
+
+                MessageBox.Show("정상적인 사용을 위하여 프로그램을 종료하신 후, 프로그램이 존재하는 폴더에서 database 폴더에 들어가신 후 올해 년도 폴더에 들어가시고 각 반 폴더 안에 존재하는 엑셀파일을 수정하여 주세요!");
+
+                Environment.Exit(0);
             }
 
         }
@@ -231,27 +265,35 @@ namespace 中國語真棒
         {
             String counttype = Count.Tag.ToString();
             TextBlock SelectTeam = null;
+            int selectedban = selectban.SelectedIndex + 1;
+            String selectteamnumber = "1";
 
-            switch(((ComboBoxItem)selectteam.SelectedItem).Tag.ToString())
+            switch (((ComboBoxItem)selectteam.SelectedItem).Tag.ToString())
             {
 
                 case "one":
                     SelectTeam = oneteam;
+                    selectteamnumber = "1";
                     break;
                 case "two":
                     SelectTeam = twoteam;
+                    selectteamnumber = "2";
                     break;
                 case "three":
                     SelectTeam = threeteam;
+                    selectteamnumber = "3";
                     break;
                 case "four":
                     SelectTeam = fourteam;
+                    selectteamnumber = "4";
                     break;
                 case "five":
                     SelectTeam = fiveteam;
+                    selectteamnumber = "5";
                     break;
                 case "six":
                     SelectTeam = sixteam;
+                    selectteamnumber = "6";
                     break;
                 default:
                     break;
@@ -263,9 +305,109 @@ namespace 中國語真棒
             } else if (counttype == "down") {
                 SelectTeam.Text = "X" + (Int32.Parse(SelectTeam.Text.Replace("X", "")) - Int32.Parse(givecount.Text)).ToString();
             }
+
+
+
+            using (var fs = new FileStream("database\\" + toyear + "\\" + selectedban + "\\" + selectedban + "반.xlsx", FileMode.Open, FileAccess.Read))
+            {
+                wb = new XSSFWorkbook(fs);
+            }
+            using (var fs = new FileStream("database\\" + toyear + "\\" + selectedban + "\\" + selectedban + "반.xlsx", FileMode.Create, FileAccess.Write))
+            { 
+                sh = (XSSFSheet)wb.GetSheet(selectteamnumber + "조");
+                sh.GetRow(3).GetCell(2).SetCellValue(SelectTeam.Text.Replace("X", ""));
+                wb.Write(fs);
+            }
             display.IsHitTestVisible = false;
             MenuOff.Begin();
             MenuOn.Stop();
+        }
+
+        private void selectban_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedban = ((ComboBox)sender).SelectedIndex + 1;
+            using (var fs = new FileStream("database\\" + toyear + "\\" + selectedban + "\\" + selectedban + "반.xlsx", FileMode.Open, FileAccess.Read))
+            {
+                wb = new XSSFWorkbook(fs);
+
+
+                sh = (XSSFSheet)wb.GetSheet("1조");
+                oneteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
+                selectone.Content = sh.GetRow(1).GetCell(2).ToString();
+                if (sh.GetRow(2).GetCell(8) is null)
+                {
+                    oneteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString(); 
+                }
+                else
+                {
+                    oneteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                }
+                oneteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+                sh = (XSSFSheet)wb.GetSheet("2조");
+                twoteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
+                selecttwo.Content = sh.GetRow(1).GetCell(2).ToString();
+                if (sh.GetRow(2).GetCell(8) is null)
+                {
+                    twoteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                }
+                else
+                {
+                    twoteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                }
+                twoteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+
+                sh = (XSSFSheet)wb.GetSheet("3조");
+                threeteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
+                selectthree.Content = sh.GetRow(1).GetCell(2).ToString();
+                if (sh.GetRow(2).GetCell(8) is null)
+                {
+                    threeteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                }
+                else
+                {
+                    threeteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                }
+               threeteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+
+                sh = (XSSFSheet)wb.GetSheet("4조");
+                fourteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
+                selectfour.Content = sh.GetRow(1).GetCell(2).ToString();
+                if (sh.GetRow(2).GetCell(8) is null)
+                {
+                    fourteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                }
+                else
+                {
+                    fourteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                }
+                fourteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+
+                sh = (XSSFSheet)wb.GetSheet("5조");
+                fiveteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
+                selectfive.Content = sh.GetRow(1).GetCell(2).ToString();
+                if (sh.GetRow(2).GetCell(8) is null)
+                {
+                    fiveteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                }
+                else
+                {
+                    fiveteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                }
+                fiveteam.Text = "X" +  sh.GetRow(3).GetCell(2).ToString();
+
+                sh = (XSSFSheet)wb.GetSheet("6조");
+                sixteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
+                selectsix.Content = sh.GetRow(1).GetCell(2).ToString();
+                if (sh.GetRow(2).GetCell(8) is null)
+                {
+                    sixteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                }
+                else
+                {
+                    sixteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                }
+                sixteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+            }
         }
     }
 }

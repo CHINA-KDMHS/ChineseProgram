@@ -101,7 +101,7 @@
 
                 <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Grid>
-                        <ComboBox Style="{StaticResource ComboboxStyle}"  HorizontalAlignment="Left" Height="40" Margin="15,60,15,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold">
+                        <ComboBox x:Name="selectban"  Style="{StaticResource ComboboxStyle}"  HorizontalAlignment="Left" Height="40" Margin="15,60,15,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" SelectionChanged="selectban_SelectionChanged">
                             <ComboBoxItem Content="1bān"/>
                             <ComboBoxItem Content="2bān"/>
                             <ComboBoxItem Content="3bān"/>
@@ -142,11 +142,11 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="oneteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock x:Name="oneteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
@@ -169,11 +169,11 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="twoteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock x:Name="twoteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
@@ -196,11 +196,11 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="threeteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock x:Name="threeteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
@@ -223,11 +223,11 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="fourteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock x:Name="fourteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
@@ -250,11 +250,11 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="fiveteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock x:Name="fiveteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
@@ -277,11 +277,11 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="sixteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock x:Name="sixteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">

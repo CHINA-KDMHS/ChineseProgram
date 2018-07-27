@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:中國語真棒"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="526" WindowStyle="None" MinWidth="526" MinHeight="450" AllowsTransparency="True" Loaded="Window_Loaded" Background="#CCFFFFFF" MouseDoubleClick="Window_MouseDoubleClick">
+        Title="MainWindow" Height="450" Width="526" WindowStyle="None" MinWidth="526" MinHeight="450" AllowsTransparency="True" Loaded="Window_Loaded" Background="#CCFFFFFF" MouseDoubleClick="Window_MouseDoubleClick" KeyDown="Window_KeyDown">
     <Window.Resources>
 
         <ResourceDictionary>

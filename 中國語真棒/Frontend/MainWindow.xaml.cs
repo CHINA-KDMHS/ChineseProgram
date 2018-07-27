@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NPOI.XSSF.UserModel;
+using 中國語真棒.Frontend;
 
 namespace 中國語真棒
 {
@@ -407,6 +408,15 @@ namespace 中國語真棒
                     sixteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 sixteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.F4)
+            {
+                NewsViewer newsviewer = new NewsViewer();
+                newsviewer.Show();
             }
         }
     }

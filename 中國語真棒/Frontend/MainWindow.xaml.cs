@@ -109,6 +109,7 @@ namespace 中國語真棒
                         r.CreateCell(j);
                     }
                 }
+                    
                     sh.GetRow(1).GetCell(1).SetCellValue("조이름");
                     sh.GetRow(1).GetCell(2).SetCellValue("여기에 조이름을 적어주세요");
                     sh.GetRow(2).GetCell(1).SetCellValue("조원들 (1번은 조장입니다.)");

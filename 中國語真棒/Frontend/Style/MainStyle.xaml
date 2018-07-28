@@ -134,7 +134,6 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ComboBoxItem}">
-                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisible}"/>
                     <Setter Property="Template" Value="{StaticResource FlatComboBoxItem}"/>
                 </Style>
             </Setter.Value>
@@ -154,7 +153,7 @@
                                             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}">
                             <ContentPresenter.Resources>
                                 <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="Foreground" Value="#ff0000"/>
                                 </Style>
                             </ContentPresenter.Resources>
                         </ContentPresenter>
@@ -203,5 +202,19 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+    <Style x:Key="ListBoxStyle" TargetType="ListBox">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+          Value="Hidden" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+          Value="Hidden" />
+        <Setter Property="ScrollViewer.CanContentScroll"
+          Value="true" />
+    </Style>
+
+    <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+        <Setter Property="Padding" Value="4,10"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="BorderBrush" Value="#33FFFFFF">
+        </Setter>
+    </Style>
 </ResourceDictionary>

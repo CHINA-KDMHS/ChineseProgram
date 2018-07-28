@@ -52,6 +52,8 @@
     </WindowChrome.WindowChrome>
     <Grid>
 
+        <Image Source="Res/teacher_1.png" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,-2,0,0" Width="152" Height="384" />
+        <Image Source="Res/teacher_2.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="300,0,0,0" Width="226" Height="164" />
 
         <Grid Height="50" x:Name="Title" VerticalAlignment="Top" MouseLeftButtonDown="Title_MouseLeftButtonDown" Background="#00000000">
             <Rectangle Height="50" VerticalAlignment="Top"/>
@@ -93,7 +95,7 @@
             </Grid.RowDefinitions>
 
             <Grid>
-
+ 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -118,7 +120,9 @@
                     <Grid>
                         <Image Source="Res/delete.png" Width="50" Height="50" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
                         <Image Source="Res/dragon.png" Width="50" Height="50" Margin="0,0,50,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseLeftButtonDown="Image_MouseLeftButtonDown_1"></Image>
+
                     </Grid>
+                    
                 </Viewbox>
             </Grid>
 
@@ -146,12 +150,20 @@
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock x:Name="oneteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" >
+                           <TextBlock x:Name="oneteam_boss"  Text="홍길동" Foreground="#FFFF00E2"/>
+                           <TextBlock x:Name="oneteam_member" Text=" 테스트 징징이 김경일 김여포 과연그"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
-                        <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
+                        <Grid Margin="0">
+                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
+                                </Image.Effect>
+
+                            </Image>
                             <TextBlock x:Name="oneteam"  Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
@@ -173,12 +185,19 @@
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock x:Name="twoteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" >
+                           <TextBlock x:Name="twoteam_boss"  Text="홍길동" Foreground="#FFFF00E2"/>
+                           <TextBlock x:Name="twoteam_member" Text=" 테스트 징징이 김경일 김여포 과연그"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
+                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
+                                </Image.Effect>
+                            </Image>
                             <TextBlock x:Name="twoteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
@@ -200,12 +219,20 @@
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock x:Name="threeteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" >
+                           <TextBlock x:Name="threeteam_boss"  Text="홍길동" Foreground="#FFFF00E2"/>
+                           <TextBlock x:Name="threeteam_member" Text=" 테스트 징징이 김경일 김여포 과연그"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
+                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp">
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
+                                </Image.Effect>
+                            </Image>
+
                             <TextBlock x:Name="threeteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
@@ -227,12 +254,20 @@
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock x:Name="fourteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" >
+                           <TextBlock x:Name="fourteam_boss"  Text="홍길동" Foreground="#FFFF00E2"/>
+                           <TextBlock x:Name="fourteam_member" Text=" 테스트 징징이 김경일 김여포 과연그"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
+                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
+                                </Image.Effect>
+                            </Image>
+                            
                             <TextBlock x:Name="fourteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
@@ -254,12 +289,19 @@
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock x:Name="fiveteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" >
+                           <TextBlock x:Name="fiveteam_boss"  Text="홍길동" Foreground="#FFFF00E2"/>
+                           <TextBlock x:Name="fiveteam_member" Text=" 테스트 징징이 김경일 김여포 과연그"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
+                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp">
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
+                                </Image.Effect>
+                            </Image>
                             <TextBlock x:Name="fiveteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
@@ -281,12 +323,19 @@
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
-                        <TextBlock x:Name="sixteam_member" Text="홍길동 테스트 징징이 김경일 김여포 과연그" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" />
+                        <TextBlock FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0" >
+                           <TextBlock x:Name="sixteam_boss"  Text="홍길동" Foreground="#FFFF00E2"/>
+                           <TextBlock x:Name="sixteam_member" Text=" 테스트 징징이 김경일 김여포 과연그"/>
+                        </TextBlock>
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" />
+                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                                <Image.Effect>
+                                    <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
+                                </Image.Effect>
+                            </Image>
                             <TextBlock x:Name="sixteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 

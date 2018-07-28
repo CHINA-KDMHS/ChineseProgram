@@ -31,7 +31,7 @@
 
             <Button x:Name="CloseButton" Style="{StaticResource ButtonStyle}" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" Background="#00252529">
                 <Grid Width="16" Height="16" x:Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
-                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FF3F3F3F" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
+                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FFEBEBEB" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -41,7 +41,7 @@
                             </TransformGroup>
                         </Rectangle.RenderTransform>
                     </Rectangle>
-                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FF3F3F3F" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
+                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FFEBEBEB" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -53,9 +53,24 @@
                     </Rectangle>
                 </Grid>
             </Button>
+        </Grid>
 
+        <Grid Margin="0,50,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,0,0">
+                    <TextBlock x:Name="fourteam_name" Text="연합뉴스" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="White" />
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="1">
 
+                <ListBox x:Name="Newscontentlist" Style="{StaticResource ListBoxStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="24" Margin="30,0,30,30" PreviewMouseDown="Newscontentlist_PreviewMouseDown" >
 
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

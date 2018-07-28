@@ -115,7 +115,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,6 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Frontend\Res\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\teacher_1.png" />
+    <Resource Include="Frontend\Res\teacher_2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,6 +13,8 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using 中國語真棒.Backend;
 
 namespace 中國語真棒.Frontend
 {
@@ -55,9 +57,30 @@ namespace 中國語真棒.Frontend
             this.Close();
         }
 
+        public void GetNews()
+        {
+
+
+            Yonhap yonhap = new Yonhap("http://www.yonhapnews.co.kr/international/0603000001.html");
+            List<String> titleLinks = yonhap.getTitleLinks();
+            List<String> titles = yonhap.getTitles(titleLinks);
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate {
+                Newscontentlist.Items.Clear();
+
+                for (int i = 0; i < 20; i++)
+                {
+                    Newscontentlist.Items.Add(new ListBoxItem() { Content = titles[i], Tag = titleLinks[i] });
+                }
+            }));
+
+        }
+
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             EnableBlur();
+            Newscontentlist.Items.Add(new ListBoxItem() { Content = "뉴스를 불러오고 있습니다!" });
+            System.Threading.Thread newsthread = new System.Threading.Thread(GetNews);
+            newsthread.Start();
         }
 
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -75,6 +98,15 @@ namespace 中國語真棒.Frontend
         private void Title_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void Newscontentlist_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = ItemsControl.ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) as ListBoxItem;
+            if (item != null)
+            {
+                System.Diagnostics.Process.Start(item.Tag.ToString());
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +9,21 @@ namespace 中國語真棒.Backend
 {
     class Croller
     {
-        static void Main(string[] args)
-        {
-            //Yonhap yonhap = new Yonhap("http://www.yonhapnews.co.kr/international/0603000001.html");
-            Yonhap yonhap = new Yonhap("http://www.yonhapnews.co.kr/international/0602000001.html");
+        //    static void Main(string[] args)
+        //    {
+        //        //Yonhap yonhap = new Yonhap("http://www.yonhapnews.co.kr/international/0603000001.html");
+        //        Yonhap yonhap = new Yonhap("http://www.yonhapnews.co.kr/international/0602000001.html");
 
-            List<String> titleLinks = yonhap.getTitleLinks();
-            List<String> titles = yonhap.getTitles(titleLinks);
+        //        List<String> titleLinks = yonhap.getTitleLinks();
+        //        List<String> titles = yonhap.getTitles(titleLinks);
 
-            for (int i = 0; i < titleLinks.Count; i++)
-            {
-                Console.WriteLine(titleLinks[i] + ": " + titles[i]);
-            }
+        //        for (int i = 0; i < titleLinks.Count; i++)
+        //        {
+        //            Console.WriteLine(titleLinks[i] + ": " + titles[i]);
+        //        }
 
-            Console.Read();
-        }
+        //        Console.Read();
+        //    }
     }
 
     class Yonhap

@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NPOI.XSSF.UserModel;
+using 中國語真棒.Backend;
 using 中國語真棒.Frontend;
 
 namespace 中國語真棒
@@ -169,7 +170,6 @@ namespace 中國語真棒
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             EnableBlur();
-
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -258,6 +258,8 @@ namespace 中國語真棒
 
         private void display_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            selectteam.SelectedItem = null;
+            givecount.Text = null;
             display.IsHitTestVisible = false;
             MenuOff.Begin();
             MenuOn.Stop();
@@ -338,11 +340,13 @@ namespace 中國語真棒
                 selectone.Content = sh.GetRow(1).GetCell(2).ToString();
                 if (sh.GetRow(2).GetCell(8) is null)
                 {
-                    oneteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString(); 
+                    oneteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    oneteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString(); 
                 }
                 else
                 {
-                    oneteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                    oneteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    oneteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 oneteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
                 sh = (XSSFSheet)wb.GetSheet("2조");
@@ -350,11 +354,13 @@ namespace 中國語真棒
                 selecttwo.Content = sh.GetRow(1).GetCell(2).ToString();
                 if (sh.GetRow(2).GetCell(8) is null)
                 {
-                    twoteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                    twoteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    twoteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
                 }
                 else
                 {
-                    twoteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                    twoteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    twoteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 twoteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
 
@@ -363,11 +369,13 @@ namespace 中國語真棒
                 selectthree.Content = sh.GetRow(1).GetCell(2).ToString();
                 if (sh.GetRow(2).GetCell(8) is null)
                 {
-                    threeteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                    threeteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    threeteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
                 }
                 else
                 {
-                    threeteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                    threeteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    threeteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                threeteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
 
@@ -376,11 +384,13 @@ namespace 中國語真棒
                 selectfour.Content = sh.GetRow(1).GetCell(2).ToString();
                 if (sh.GetRow(2).GetCell(8) is null)
                 {
-                    fourteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                    fourteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    fourteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
                 }
                 else
                 {
-                    fourteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                    fourteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    fourteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 fourteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
 
@@ -389,11 +399,13 @@ namespace 中國語真棒
                 selectfive.Content = sh.GetRow(1).GetCell(2).ToString();
                 if (sh.GetRow(2).GetCell(8) is null)
                 {
-                    fiveteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                    fiveteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    fiveteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
                 }
                 else
                 {
-                    fiveteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                    fiveteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    fiveteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 fiveteam.Text = "X" +  sh.GetRow(3).GetCell(2).ToString();
 
@@ -402,11 +414,13 @@ namespace 中國語真棒
                 selectsix.Content = sh.GetRow(1).GetCell(2).ToString();
                 if (sh.GetRow(2).GetCell(8) is null)
                 {
-                    sixteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
+                    sixteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    sixteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
                 }
                 else
                 {
-                    sixteam_member.Text = sh.GetRow(2).GetCell(2).ToString() + " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
+                    sixteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
+                    sixteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 sixteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
             }
@@ -414,7 +428,7 @@ namespace 中國語真棒
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.F4)
+            if(e.Key == Key.F2)
             {
                 NewsViewer newsviewer = new NewsViewer();
                 newsviewer.Show();

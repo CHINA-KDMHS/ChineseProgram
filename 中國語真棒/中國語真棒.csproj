@@ -143,5 +143,17 @@
     <Resource Include="Frontend\Res\teacher_1.png" />
     <Resource Include="Frontend\Res\teacher_2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\bgm.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\bgm.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\bgm.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

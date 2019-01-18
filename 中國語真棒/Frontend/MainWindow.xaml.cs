@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using NPOI.XSSF.UserModel;
 using 中國語真棒.Backend;
 using 中國語真棒.Frontend;
+using System.Media;
 
 namespace 中國語真棒
 {
@@ -26,38 +27,6 @@ namespace 中國語真棒
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
     /// 
-    internal enum AccentState
-    {
-        ACCENT_DISABLED = 0,
-        ACCENT_ENABLE_GRADIENT = 1,
-        ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
-        ACCENT_ENABLE_BLURBEHIND = 3,
-        ACCENT_INVALID_STATE = 4
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct AccentPolicy
-    {
-        public AccentState AccentState;
-        public int AccentFlags;
-        public int GradientColor;
-        public int AnimationId;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct WindowCompositionAttributeData
-    {
-        public WindowCompositionAttribute Attribute;
-        public IntPtr Data;
-        public int SizeOfData;
-    }
-
-    internal enum WindowCompositionAttribute
-    {
-        // ...
-        WCA_ACCENT_POLICY = 19
-        // ...
-    }
     public partial class MainWindow : System.Windows.Window
     {
 
@@ -71,12 +40,13 @@ namespace 中國語真棒
         XSSFWorkbook wb;
         XSSFSheet sh;
 
+        private Point MouseDownLocation;
+
         public MainWindow()
         {
             InitializeComponent();
             MenuOn = (Storyboard)FindResource("OpenDisplay");
             MenuOff = (Storyboard)FindResource("CloseDisplay");
-
 
             toyear = DateTime.Now.ToString("yyyy");
 
@@ -142,65 +112,7 @@ namespace 中國語真棒
 
         }
 
-        [DllImport("user32.dll")]
-        internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
-
-        internal void EnableBlur()
-        {
-            var windowHelper = new WindowInteropHelper(this);
-
-            var accent = new AccentPolicy();
-            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
-
-            var accentStructSize = Marshal.SizeOf(accent);
-
-            var accentPtr = Marshal.AllocHGlobal(accentStructSize);
-            Marshal.StructureToPtr(accent, accentPtr, false);
-
-            var data = new WindowCompositionAttributeData();
-            data.Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY;
-            data.SizeOfData = accentStructSize;
-            data.Data = accentPtr;
-
-            SetWindowCompositionAttribute(windowHelper.Handle, ref data);
-
-            Marshal.FreeHGlobal(accentPtr);
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            EnableBlur();
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-
-        private void Image_DragEnter(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("Drag Enter");
-        }
-
-
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            CaptureMouse();
-            Dragging = true;
-        }
+       
 
         private void Image_MouseMove(object sender, MouseEventArgs e)
         {
@@ -248,12 +160,14 @@ namespace 中國語真棒
             MenuOff.Stop();
         }
 
+
         private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             Count.Tag = "up";
             display.IsHitTestVisible = true;
             MenuOn.Begin();
             MenuOff.Stop();
+            MouseDownLocation = e.GetPosition(this);
         }
 
         private void display_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -264,6 +178,13 @@ namespace 中國語真棒
             MenuOff.Begin();
             MenuOn.Stop();
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CaptureMouse();
+            Dragging = true;
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -338,7 +259,7 @@ namespace 中國語真棒
                 sh = (XSSFSheet)wb.GetSheet("1조");
                 oneteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
                 selectone.Content = sh.GetRow(1).GetCell(2).ToString();
-                if (sh.GetRow(2).GetCell(8) is null)
+                if (sh.GetRow(2).GetCell(8) == null)
                 {
                     oneteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     oneteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString(); 
@@ -352,7 +273,7 @@ namespace 中國語真棒
                 sh = (XSSFSheet)wb.GetSheet("2조");
                 twoteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
                 selecttwo.Content = sh.GetRow(1).GetCell(2).ToString();
-                if (sh.GetRow(2).GetCell(8) is null)
+                if (sh.GetRow(2).GetCell(8) == null)
                 {
                     twoteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     twoteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
@@ -367,7 +288,7 @@ namespace 中國語真棒
                 sh = (XSSFSheet)wb.GetSheet("3조");
                 threeteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
                 selectthree.Content = sh.GetRow(1).GetCell(2).ToString();
-                if (sh.GetRow(2).GetCell(8) is null)
+                if (sh.GetRow(2).GetCell(8) == null)
                 {
                     threeteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     threeteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
@@ -382,7 +303,7 @@ namespace 中國語真棒
                 sh = (XSSFSheet)wb.GetSheet("4조");
                 fourteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
                 selectfour.Content = sh.GetRow(1).GetCell(2).ToString();
-                if (sh.GetRow(2).GetCell(8) is null)
+                if (sh.GetRow(2).GetCell(8) == null)
                 {
                     fourteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     fourteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
@@ -397,7 +318,7 @@ namespace 中國語真棒
                 sh = (XSSFSheet)wb.GetSheet("5조");
                 fiveteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
                 selectfive.Content = sh.GetRow(1).GetCell(2).ToString();
-                if (sh.GetRow(2).GetCell(8) is null)
+                if (sh.GetRow(2).GetCell(8) == null)
                 {
                     fiveteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     fiveteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
@@ -412,7 +333,7 @@ namespace 中國語真棒
                 sh = (XSSFSheet)wb.GetSheet("6조");
                 sixteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
                 selectsix.Content = sh.GetRow(1).GetCell(2).ToString();
-                if (sh.GetRow(2).GetCell(8) is null)
+                if (sh.GetRow(2).GetCell(8) == null)
                 {
                     sixteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     sixteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString();
@@ -434,5 +355,22 @@ namespace 中國語真棒
                 newsviewer.Show();
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var notificationSound = new SoundPlayer(中國語真棒.Properties.Resources.bgm);
+            notificationSound.PlayLooping();
+        }
+
+        //private void Image_MouseMove_1(object sender, MouseEventArgs e)
+        //{
+        //    if(e.LeftButton == MouseButtonState.Pressed)
+        //    {
+        //        Thickness margin = dragon.Margin;
+        //        margin.Left = e.GetPosition(this).X + dragon.Margin.Left - MouseDownLocation.X;
+        //        margin.Top = e.GetPosition(this).Y + dragon.Margin.Top - MouseDownLocation.Y;
+        //        dragon.Margin = margin;
+        //    }
+        //}
     }
 }

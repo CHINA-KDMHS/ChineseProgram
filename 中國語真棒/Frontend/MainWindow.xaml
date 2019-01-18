@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:中國語真棒"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="526" WindowStyle="None" MinWidth="526" MinHeight="450" AllowsTransparency="True" Loaded="Window_Loaded" Background="#CCFFFFFF" MouseDoubleClick="Window_MouseDoubleClick" KeyDown="Window_KeyDown">
+        Title="中國語真棒" Height="450" Width="526" MinWidth="526" MinHeight="450" KeyDown="Window_KeyDown" Loaded="Window_Loaded">
     <Window.Resources>
 
         <ResourceDictionary>
@@ -45,57 +45,21 @@
 
         </ResourceDictionary>
     </Window.Resources>
-
-    <WindowChrome.WindowChrome>
-        <WindowChrome 
-        CaptionHeight="0" ResizeBorderThickness="5" NonClientFrameEdges="None" GlassFrameThickness="10" UseAeroCaptionButtons="False" />
-    </WindowChrome.WindowChrome>
+    <Window.Background>
+        <ImageBrush ImageSource="Res/background.jpg"/>
+    </Window.Background>
     <Grid>
 
-        <Image Source="Res/teacher_1.png" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,-2,0,0" Width="152" Height="384" />
         <Image Source="Res/teacher_2.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="300,0,0,0" Width="226" Height="164" />
 
-        <Grid Height="50" x:Name="Title" VerticalAlignment="Top" MouseLeftButtonDown="Title_MouseLeftButtonDown" Background="#00000000">
-            <Rectangle Height="50" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="中國語真棒" VerticalAlignment="Center" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
-
-            <Button x:Name="CloseButton" Style="{StaticResource ButtonStyle}" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" Background="#00252529">
-                <Grid Width="16" Height="16" x:Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
-                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FF3F3F3F" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
-                        <Rectangle.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="45"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FF3F3F3F" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
-                        <Rectangle.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="135"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                </Grid>
-            </Button>
-
-
-
-        </Grid>
-
-        <Grid Margin="0,50,0,0">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.45*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid>
- 
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -104,14 +68,14 @@
                 <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Grid>
                         <ComboBox x:Name="selectban"  Style="{StaticResource ComboboxStyle}"  HorizontalAlignment="Left" Height="40" Margin="15,60,15,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" SelectionChanged="selectban_SelectionChanged">
-                            <ComboBoxItem Content="1bān"/>
-                            <ComboBoxItem Content="2bān"/>
-                            <ComboBoxItem Content="3bān"/>
-                            <ComboBoxItem Content="4bān"/>
-                            <ComboBoxItem Content="5bān"/>
-                            <ComboBoxItem Content="6bān"/>
+                            <ComboBoxItem Content="1班"/>
+                            <ComboBoxItem Content="2班"/>
+                            <ComboBoxItem Content="3班"/>
+                            <ComboBoxItem Content="4班"/>
+                            <ComboBoxItem Content="5班"/>
+                            <ComboBoxItem Content="6班"/>
                         </ComboBox>
-                        <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="qǐngxuǎnzé bān!" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" RenderTransformOrigin="0.33,0.381" Width="205" FontSize="24"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="15,15,0,0" TextWrapping="Wrap" Text="请选则 班!" VerticalAlignment="Top" Foreground="#FF141414" FontFamily="Noto Sans CJK KR Bold" RenderTransformOrigin="0.33,0.381" Width="205" FontSize="24"/>
                     </Grid>
                 </Viewbox>
 
@@ -122,11 +86,11 @@
                         <Image Source="Res/dragon.png" Width="50" Height="50" Margin="0,0,50,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseLeftButtonDown="Image_MouseLeftButtonDown_1"></Image>
 
                     </Grid>
-                    
+
                 </Viewbox>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Background="#7FFFFFFF">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -146,7 +110,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock x:Name="oneteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="oneteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="Red" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -181,7 +145,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock x:Name="twoteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="twoteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="Red" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -215,7 +179,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock x:Name="threeteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="threeteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="Red" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -250,7 +214,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock x:Name="fourteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="fourteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="Red" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -267,7 +231,7 @@
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
                             </Image>
-                            
+
                             <TextBlock x:Name="fourteam" Text="X25" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="10,0,20,0" TextAlignment="Right" FontSize="48" />
                         </Grid>
 
@@ -285,7 +249,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock x:Name="fiveteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="fiveteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="Red" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -319,7 +283,7 @@
                     </Grid.RowDefinitions>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock x:Name="sixteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" />
+                        <TextBlock x:Name="sixteam_name" Text="조이름" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="Red" />
                     </Viewbox>
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
@@ -349,7 +313,7 @@
 
         </Grid>
         <Grid x:Name="display" Opacity="0" Background="#B2000000" MouseLeftButtonDown="display_MouseLeftButtonDown" IsHitTestVisible="False">
-            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="qǐngxuǎnzé bān" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="qǐngxuǎnzé 班" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
             <ComboBox  x:Name="selectteam" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Center" Height="40" Margin="0,0,0,150" VerticalAlignment="Center" Width="200" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" Foreground="White">
                 <ComboBoxItem Tag="one" x:Name="selectone" Content="조이름"/>
                 <ComboBoxItem Tag="two" x:Name="selecttwo" Content="조이름"/>
@@ -360,7 +324,7 @@
             </ComboBox>
 
             <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="xuǎnzé shùliàng!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
-            
+
             <TextBox x:Name="givecount" HorizontalAlignment="Center" Height="36" Margin="0,100,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Foreground="White" Background="{x:Null}" BorderBrush="#FFFFC105" BorderThickness="0,0,0,2" FontSize="24" FontFamily="Noto Sans CJK KR Bold" TextAlignment="Center"/>
 
             <Button x:Name="Count" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,248,0,0" BorderBrush="{x:Null}" Foreground="Black" Background="#7FFFFFFF" FontFamily="Noto Sans CJK KR Black" FontSize="22" Padding="0" Click="Button_Click">shì</Button>

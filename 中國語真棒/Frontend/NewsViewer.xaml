@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:中國語真棒.Frontend"
         mc:Ignorable="d"
-        Title="NewsViewer" Height="450" Width="800" WindowStyle="None"  AllowsTransparency="True" Background="#CC141414" Loaded="Window_Loaded_1" MouseDoubleClick="Window_MouseDoubleClick">
+        Title="NewsViewer" Height="450" Width="800" Background="#CC141414" Loaded="Window_Loaded_1" MouseDoubleClick="Window_MouseDoubleClick">
 
     <Window.Resources>
 

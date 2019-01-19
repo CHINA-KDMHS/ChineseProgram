@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:中國語真棒.Frontend"
         mc:Ignorable="d"
-        Title="NewsViewer" Height="450" Width="800" Background="#CC141414" Loaded="Window_Loaded_1" MouseDoubleClick="Window_MouseDoubleClick">
+        Title="NewsViewer" Height="450" Width="800" Loaded="Window_Loaded_1" Foreground="{x:Null}">
 
     <Window.Resources>
 
@@ -17,52 +17,23 @@
         </ResourceDictionary>
 
     </Window.Resources>
-    
-    <WindowChrome.WindowChrome>
-        <WindowChrome 
-        CaptionHeight="0" ResizeBorderThickness="5" NonClientFrameEdges="None" GlassFrameThickness="10" UseAeroCaptionButtons="False" />
-    </WindowChrome.WindowChrome>
-    <Grid>
+    <Window.Background>
+        <ImageBrush ImageSource="Res/bg2.jpg"/>
+    </Window.Background>
 
+    <Grid Background="#7F000000">
 
-        <Grid Height="50" x:Name="Title" VerticalAlignment="Top" Background="#00000000" MouseLeftButtonDown="Title_MouseLeftButtonDown_1">
-            <Rectangle Height="50" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="中國新聞" VerticalAlignment="Center" Foreground="#FFF1F1F1" FontFamily="Noto Sans CJK KR Bold" FontSize="14"/>
-
-            <Button x:Name="CloseButton" Style="{StaticResource ButtonStyle}" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" Background="#00252529">
-                <Grid Width="16" Height="16" x:Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
-                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FFEBEBEB" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
-                        <Rectangle.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="45"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Rectangle Height="1" VerticalAlignment="Center" Fill="#FFEBEBEB" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="16">
-                        <Rectangle.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="135"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                </Grid>
-            </Button>
-        </Grid>
-
-        <Grid Margin="0,50,0,0">
+        <Grid Margin="0,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid>
-                <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,0,0">
-                    <TextBlock x:Name="fourteam_name" Text="연합뉴스" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" RenderTransformOrigin="0.958,0.958" Margin="5,0,0,0" Foreground="White" />
+                <Viewbox Margin="20,0,20,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid Width="150">
+                        <TextBox x:Name="searchbox" FontFamily="Noto Sans CJK KR Bold"  TextWrapping="Wrap" Margin="5,0,0,0" Foreground="White" Background="{x:Null}" BorderBrush="White" BorderThickness="0,0,0,1" Width="200" Text="키워드 검색하기" HorizontalAlignment="Left" />
+                        <Button Content="검색" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" Click="Button_Click"/>
+                    </Grid>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="1">

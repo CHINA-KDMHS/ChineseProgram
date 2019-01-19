@@ -188,10 +188,15 @@ namespace 中國語真棒
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            ScaleTransform scales = new ScaleTransform();
+            scales.ScaleY = 1;
+            scales.ScaleX = 1;
             String counttype = Count.Tag.ToString();
             TextBlock SelectTeam = null;
             int selectedban = selectban.SelectedIndex + 1;
             String selectteamnumber = "1";
+            Image selectdragon = null;
 
             switch (((ComboBoxItem)selectteam.SelectedItem).Tag.ToString())
             {
@@ -199,26 +204,32 @@ namespace 中國語真棒
                 case "one":
                     SelectTeam = oneteam;
                     selectteamnumber = "1";
+                    selectdragon = onedragon;
                     break;
                 case "two":
                     SelectTeam = twoteam;
                     selectteamnumber = "2";
+                    selectdragon = twodragon;
                     break;
                 case "three":
                     SelectTeam = threeteam;
                     selectteamnumber = "3";
+                    selectdragon = threedragon;
                     break;
                 case "four":
                     SelectTeam = fourteam;
                     selectteamnumber = "4";
+                    selectdragon = fourdragon;
                     break;
                 case "five":
                     SelectTeam = fiveteam;
                     selectteamnumber = "5";
+                    selectdragon = fivedragon;
                     break;
                 case "six":
                     SelectTeam = sixteam;
                     selectteamnumber = "6";
+                    selectdragon = sixdragon;
                     break;
                 default:
                     break;
@@ -227,11 +238,14 @@ namespace 中國語真棒
             if(counttype == "up")
             {
                 SelectTeam.Text = "X" + (Int32.Parse(SelectTeam.Text.Replace("X", "")) + Int32.Parse(givecount.Text)).ToString();
+
             } else if (counttype == "down") {
                 SelectTeam.Text = "X" + (Int32.Parse(SelectTeam.Text.Replace("X", "")) - Int32.Parse(givecount.Text)).ToString();
             }
 
-
+            scales.ScaleY = 1 + double.Parse(SelectTeam.Text.Replace("X", "")) * 0.02;
+            scales.ScaleX = 1 + double.Parse(SelectTeam.Text.Replace("X", "")) * 0.02;
+            selectdragon.RenderTransform = scales;
 
             using (var fs = new FileStream("database\\" + toyear + "\\" + selectedban + "\\" + selectedban + "반.xlsx", FileMode.Open, FileAccess.Read))
             {
@@ -250,11 +264,14 @@ namespace 中國語真棒
 
         private void selectban_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+  
+
             int selectedban = ((ComboBox)sender).SelectedIndex + 1;
             using (var fs = new FileStream("database\\" + toyear + "\\" + selectedban + "\\" + selectedban + "반.xlsx", FileMode.Open, FileAccess.Read))
             {
-                wb = new XSSFWorkbook(fs);
 
+                wb = new XSSFWorkbook(fs);
 
                 sh = (XSSFSheet)wb.GetSheet("1조");
                 oneteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
@@ -269,6 +286,7 @@ namespace 中國語真棒
                     oneteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     oneteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
+                onedragon.RenderTransform = new ScaleTransform(1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02, 1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02);
                 oneteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
                 sh = (XSSFSheet)wb.GetSheet("2조");
                 twoteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
@@ -283,6 +301,7 @@ namespace 中國語真棒
                     twoteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     twoteam_member.Text =  " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
+                twodragon.RenderTransform = new ScaleTransform(1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02, 1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02);
                 twoteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
 
                 sh = (XSSFSheet)wb.GetSheet("3조");
@@ -298,7 +317,8 @@ namespace 中國語真棒
                     threeteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     threeteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
-               threeteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+                threedragon.RenderTransform = new ScaleTransform(1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02, 1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02);
+                threeteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
 
                 sh = (XSSFSheet)wb.GetSheet("4조");
                 fourteam_name.Text = sh.GetRow(1).GetCell(2).ToString();
@@ -313,6 +333,7 @@ namespace 中國語真棒
                     fourteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     fourteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
+                fourdragon.RenderTransform = new ScaleTransform(1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02, 1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02);
                 fourteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
 
                 sh = (XSSFSheet)wb.GetSheet("5조");
@@ -328,6 +349,7 @@ namespace 中國語真棒
                     fiveteam_boss.Text = sh.GetRow(2).GetCell(2).ToString();
                     fiveteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
+                fivedragon.RenderTransform = new ScaleTransform(1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02, 1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02);
                 fiveteam.Text = "X" +  sh.GetRow(3).GetCell(2).ToString();
 
                 sh = (XSSFSheet)wb.GetSheet("6조");
@@ -344,6 +366,7 @@ namespace 中國語真棒
                     sixteam_member.Text = " " + sh.GetRow(2).GetCell(3).ToString() + " " + sh.GetRow(2).GetCell(4).ToString() + " " + sh.GetRow(2).GetCell(5).ToString() + " " + sh.GetRow(2).GetCell(6).ToString() + " " + sh.GetRow(2).GetCell(7).ToString() + " " + sh.GetRow(2).GetCell(8).ToString(); ;
                 }
                 sixteam.Text = "X" + sh.GetRow(3).GetCell(2).ToString();
+                sixdragon.RenderTransform = new ScaleTransform(1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02, 1 + double.Parse(sh.GetRow(3).GetCell(2).ToString()) * 0.02);
             }
         }
 

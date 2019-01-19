@@ -1,5 +1,8 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,52 +31,56 @@ namespace 中國語真棒.Frontend
             InitializeComponent();
         }
         
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        public ReadOnlyCollection<News> getNews(String keyword)
         {
-            this.Close();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--headless");
+
+            var chromeDriverService = ChromeDriverService.CreateDefaultService(System.IO.Directory.GetCurrentDirectory() + "\\libs");
+            chromeDriverService.HideCommandPromptWindow = true;
+            IWebDriver driver = new ChromeDriver(chromeDriverService, options);
+            // 네이버 뉴스검색 url 
+            driver.Url = "https://search.naver.com/search.naver?where=news&query=중국+" + keyword.Replace(" ", "+") + "&sm=tab_srt&sort=1&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so%3Add%2Cp%3Aall%2Ca%3Aall&mynews=0&mson=0&refresh_start=0&related=0";
+
+            Newscontentlist.Items.Clear();
+            IWebElement newsSection = driver.FindElement(By.ClassName("mynews"));
+            ReadOnlyCollection<IWebElement> newsElements = newsSection.FindElement(By.ClassName("type01")).FindElements(By.TagName("li"));
+
+            List<News> newsList = new List<News>();
+
+            for (int i = 0; i < newsElements.Count; i++)
+            {
+                IWebElement newsElement = newsElements[i];
+                IWebElement newsElement_dt = newsElement.FindElement(By.TagName("dt")); // 타이틀
+                IWebElement newsElement_a = newsElement_dt.FindElement(By.TagName("a")); // a태그(href 링크)
+                String title = newsElement_dt.Text;
+                String link = newsElement_a.GetAttribute("href");
+                newsList.Add(new News(title, link));
+                Newscontentlist.Items.Add(new ListBoxItem() { Content = title, Tag = link });
+            }
+
+            return new ReadOnlyCollection<News>(newsList);
         }
 
-        public void GetNews()
+    public class News
+    {
+        private String newsTitle { get; }
+        private String link { get; }
+
+        public News(String newsTitle, String link)
         {
-
-
-            Yonhap yonhap = new Yonhap("http://www.yonhapnews.co.kr/international/0603000001.html");
-            List<String> titleLinks = yonhap.getTitleLinks();
-            List<String> titles = yonhap.getTitles(titleLinks);
-            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate {
-                Newscontentlist.Items.Clear();
-
-                for (int i = 0; i < 20; i++)
-                {
-                    Newscontentlist.Items.Add(new ListBoxItem() { Content = titles[i], Tag = titleLinks[i] });
-                }
-            }));
-
+            this.newsTitle = newsTitle;
+            this.link = link;
         }
+
+    }
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            Newscontentlist.Items.Add(new ListBoxItem() { Content = "뉴스를 불러오고 있습니다!" });
-            System.Threading.Thread newsthread = new System.Threading.Thread(GetNews);
-            newsthread.Start();
+            //Newscontentlist.Items.Add(new ListBoxItem() { Content = "뉴스를 불러오고 있습니다!" });
+            getNews("IT");
         }
 
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
-        private void Title_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
 
         private void Newscontentlist_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -82,6 +89,16 @@ namespace 中國語真棒.Frontend
             {
                 System.Diagnostics.Process.Start(item.Tag.ToString());
             }
+        }
+
+        private void searchbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            getNews(searchbox.Text);
         }
     }
 }

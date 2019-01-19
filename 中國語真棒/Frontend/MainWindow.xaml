@@ -50,7 +50,7 @@
     </Window.Background>
     <Grid>
 
-        <Image Source="Res/teacher_2.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="300,0,0,0" Width="226" Height="164" />
+        <Image Source="Res/teacher_2.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="398" Height="249" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -122,7 +122,7 @@
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid Margin="0">
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                            <Image x:Name="onedragon" Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
                                 <Image.Effect>
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
@@ -157,7 +157,7 @@
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                            <Image x:Name="twodragon" Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
                                 <Image.Effect>
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
@@ -191,7 +191,7 @@
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp">
+                            <Image x:Name="threedragon" Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp">
                                 <Image.Effect>
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
@@ -226,7 +226,7 @@
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                            <Image x:Name="fourdragon" Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
                                 <Image.Effect>
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
@@ -261,7 +261,7 @@
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp">
+                            <Image x:Name="fivedragon" Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp">
                                 <Image.Effect>
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
@@ -295,7 +295,7 @@
 
                     <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2">
                         <Grid>
-                            <Image Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
+                            <Image x:Name="sixdragon" Source="Res/dragon.png" Width="50" Height="50" Margin="25,0,110,0" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp" >
                                 <Image.Effect>
                                     <DropShadowEffect Color="#FF00F9FF" ShadowDepth="0" BlurRadius="15"/>
                                 </Image.Effect>
@@ -313,7 +313,7 @@
 
         </Grid>
         <Grid x:Name="display" Opacity="0" Background="#B2000000" MouseLeftButtonDown="display_MouseLeftButtonDown" IsHitTestVisible="False">
-            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="qǐngxuǎnzé 班" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,250" TextWrapping="Wrap" Text="请选则 班" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
             <ComboBox  x:Name="selectteam" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Center" Height="40" Margin="0,0,0,150" VerticalAlignment="Center" Width="200" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" Foreground="White">
                 <ComboBoxItem Tag="one" x:Name="selectone" Content="조이름"/>
                 <ComboBoxItem Tag="two" x:Name="selecttwo" Content="조이름"/>
@@ -323,7 +323,7 @@
                 <ComboBoxItem Tag="six" x:Name="selectsix" Content="조이름"/>
             </ComboBox>
 
-            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="xuǎnzé shùliàng!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="选则 数量!" VerticalAlignment="Center" Foreground="White" FontFamily="Noto Sans CJK KR Bold" FontSize="22" RenderTransformOrigin="0.33,0.381" Width="130" TextAlignment="Center"/>
 
             <TextBox x:Name="givecount" HorizontalAlignment="Center" Height="36" Margin="0,100,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Foreground="White" Background="{x:Null}" BorderBrush="#FFFFC105" BorderThickness="0,0,0,2" FontSize="24" FontFamily="Noto Sans CJK KR Bold" TextAlignment="Center"/>
 

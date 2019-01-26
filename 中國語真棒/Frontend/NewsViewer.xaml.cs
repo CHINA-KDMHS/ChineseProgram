@@ -31,8 +31,16 @@ namespace 中國語真棒.Frontend
             InitializeComponent();
         }
         
-        public ReadOnlyCollection<News> getNews(String keyword)
+        public void getNews()
         {
+            String keyword = null;
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate {
+                keyword = searchbox.Text;
+                Newscontentlist.Items.Clear();
+                Newscontentlist.Items.Add(new ListBoxItem() { Content = "잠시만 기다려 주세요" });
+            }));
+
+
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--headless");
 
@@ -42,7 +50,7 @@ namespace 中國語真棒.Frontend
             // 네이버 뉴스검색 url 
             driver.Url = "https://search.naver.com/search.naver?where=news&query=중국+" + keyword.Replace(" ", "+") + "&sm=tab_srt&sort=1&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so%3Add%2Cp%3Aall%2Ca%3Aall&mynews=0&mson=0&refresh_start=0&related=0";
 
-            Newscontentlist.Items.Clear();
+
             IWebElement newsSection = driver.FindElement(By.ClassName("mynews"));
             ReadOnlyCollection<IWebElement> newsElements = newsSection.FindElement(By.ClassName("type01")).FindElements(By.TagName("li"));
 
@@ -56,10 +64,15 @@ namespace 中國語真棒.Frontend
                 String title = newsElement_dt.Text;
                 String link = newsElement_a.GetAttribute("href");
                 newsList.Add(new News(title, link));
-                Newscontentlist.Items.Add(new ListBoxItem() { Content = title, Tag = link });
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
+                {
+                    if(i == 0)
+                    {
+                        Newscontentlist.Items.Clear();
+                    }
+                    Newscontentlist.Items.Add(new ListBoxItem() { Content = title, Tag = link });
+                }));
             }
-
-            return new ReadOnlyCollection<News>(newsList);
         }
 
     public class News
@@ -77,8 +90,8 @@ namespace 中國語真棒.Frontend
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            //Newscontentlist.Items.Add(new ListBoxItem() { Content = "뉴스를 불러오고 있습니다!" });
-            getNews("IT");
+            Newscontentlist.Items.Add(new ListBoxItem() { Content = "뉴스를 불러오고 있습니다!" });
+
         }
 
 
@@ -98,7 +111,8 @@ namespace 中國語真棒.Frontend
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            getNews(searchbox.Text);
+            System.Threading.Thread newsthread = new System.Threading.Thread(getNews);
+            newsthread.Start();
         }
     }
 }

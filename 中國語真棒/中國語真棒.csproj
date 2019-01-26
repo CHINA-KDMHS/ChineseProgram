@@ -155,13 +155,13 @@
     <Resource Include="Frontend\Res\bgm.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\bgm.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\bgm.mp3" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Frontend\Res\bg2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Frontend\Res\levelup.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\levelup.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -260,6 +260,8 @@ namespace 中國語真棒
             display.IsHitTestVisible = false;
             MenuOff.Begin();
             MenuOn.Stop();
+            var notificationSound = new SoundPlayer(中國語真棒.Properties.Resources.levelup);
+            notificationSound.Play();
         }
 
         private void selectban_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -381,8 +383,6 @@ namespace 中國語真棒
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var notificationSound = new SoundPlayer(中國語真棒.Properties.Resources.bgm);
-            notificationSound.PlayLooping();
         }
 
         //private void Image_MouseMove_1(object sender, MouseEventArgs e)
